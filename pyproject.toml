@@ -1,0 +1,30 @@
+[project]
+name = "customer-operations-ai-agent"
+version = "0.1.0"
+description = "Customer Operations AI Agent with evaluation, audit trail and human approval (synthetic data only)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["."]
+markers = [
+    "ollama: needs a running local Ollama server (set RUN_OLLAMA_TESTS=1 to enable)",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = [".venv", "reports"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = [
+    "B008",  # FastAPI uses Depends()/Header() in argument defaults by design
+    "UP042",  # (str, Enum) is kept deliberately: it behaves the same on every Python version
+]
+
+[tool.ruff.lint.per-file-ignores]
+"app/evaluation/report.py" = ["E501"]  # long Markdown table rows
+"tests/*" = ["E501"]
+"scripts/*" = ["E501"]

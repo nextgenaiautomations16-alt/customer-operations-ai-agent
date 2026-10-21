@@ -1,0 +1,14 @@
+# Runtime
+fastapi>=0.115
+uvicorn>=0.30
+pydantic>=2.12
+httpx>=0.27
+
+# Development / testing
+pytest>=8.0
+ruff>=0.6
+
+# Persistence uses Python's built-in sqlite3, so there is no database package to install.
+# Tip: after your first successful install run
+#   pip freeze | Out-File -Encoding ascii requirements.lock.txt
+# to record the exact versions that worked on your machine.
